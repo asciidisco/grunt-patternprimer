@@ -29,4 +29,5 @@ module.exports = function (grunt) {
 
   // default - does everything
   grunt.registerTask('default', ['clean:test', 'jshint', 'nodeunit']);
+  grunt.registerTask('test', ['clean:test', 'jshint', 'nodeunit']);
 }
