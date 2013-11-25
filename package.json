@@ -1,0 +1,49 @@
+{
+  "name": "grunt-patternprimer",
+  "description": "Jeremy Keiths pattern primer on steroids",
+  "version": "0.1.0",
+  "homepage": "https://github.com/asciidisco/grunt-patternprimer",
+  "author": {
+    "name": "Sebastian Golasch",
+    "url": "http://asciidisco.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/asciidisco/grunt-patternprimer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/asciidisco/grunt-patternprimer/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/asciidisco/grunt-patternprimer/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "dependencies": {
+    "connect": "~2.7.11"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "~0.6.4",
+    "grunt-contrib-nodeunit": "~0.2.0",
+    "grunt": "~0.4.1",
+    "time-grunt": "~0.2.1",
+    "load-grunt-tasks": "~0.2.0",
+    "grunt-contrib-clean": "~0.5.0"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.1"
+  },
+  "keywords": [
+    "gruntplugin",
+    "patternprimer",
+    "connect"
+  ]
+}
