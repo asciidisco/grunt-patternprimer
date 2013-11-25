@@ -3,7 +3,7 @@
 > Grunt enabled port of [adactios](https://github.com/adactio) [Pattern-Primer](https://github.com/adactio/Pattern-Primer)
 
 ## What?!
-As statet in the original docs:
+As stated in the original docs:
 > Create little snippets of markup and save them to the "patterns folder." The pattern primer will generate a list of all the patterns in that folder. You will see the pattern rendered as HTML. You will also get the source displayed in a textarea.
 
 Check also the related [Blog Post](http://adactio.com/journal/5028/) & [example](http://patternprimer.adactio.com/) from Jeremy.
