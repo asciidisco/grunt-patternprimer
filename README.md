@@ -142,6 +142,11 @@ grunt.initConfig({
   }
 });
 ```
+#### Need some Sass?
+
+Including Sass into my config enabled me to start creating a master library of client style guides, which is very helpufl when working with remote/new developers on a project.
+
+> Sass included version [stevebritton](https://github.com/stevebritton) [Pattern-Primer](https://github.com/stevebritton/grunt-patternprimer)
 
 ## Release History
  * 2013-11-25   v0.1.0   Initial release.
