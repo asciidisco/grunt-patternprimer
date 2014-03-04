@@ -1,4 +1,4 @@
-# grunt-patternprimer v0.1.0 [![Build Status](https://travis-ci.org/asciidisco/grunt-patternprimer.png?branch=master)](https://travis-ci.org/asciidisco/grunt-patternprimer)
+# grunt-patternprimer v0.1.1 [![Build Status](https://travis-ci.org/asciidisco/grunt-patternprimer.png?branch=master)](https://travis-ci.org/asciidisco/grunt-patternprimer)
 
 > Grunt enabled port of [adactios](https://github.com/adactio) [Pattern-Primer](https://github.com/adactio/Pattern-Primer)
 
@@ -41,6 +41,10 @@ Type: `Array`
 Default: `['global.css']`
 
 Array with all the css files you that should be loaded in the parttern primer.
+
+Note: You can also specify remote ressources like `http://my.domain.com/style.css`.
+They will be downloaded and stored locally in case of a snapshot.
+Does not work with ressorces from `https` sites.
 
 #### dest
 Type: `String`  
@@ -149,4 +153,5 @@ Including Sass into my config enabled me to start creating a master library of c
 > Sass included version [stevebritton](https://github.com/stevebritton) [Pattern-Primer](https://github.com/stevebritton/grunt-patternprimer)
 
 ## Release History
+ * 2014-03-04   v0.1.1   Added remote css & fixed [#3](https://github.com/asciidisco/grunt-patternprimer/issues/3)
  * 2013-11-25   v0.1.0   Initial release.

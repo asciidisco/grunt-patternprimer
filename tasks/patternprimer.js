@@ -1,6 +1,10 @@
 // ext. libs
-var connect = require('connect');
 var fs = require('fs');
+var http = require('http');
+var path = require('path');
+
+var connect = require('connect');
+var Q = require('q');
 
 // grunting grunts for grunt
 module.exports = function(grunt) {
@@ -51,14 +55,17 @@ module.exports = function(grunt) {
         return;
       }
 
-      // load the file contents & execute the cb
-      cb(grunt.file.read(indexFile));
-      return;
+      // load the file contents
+      sourceFile = grunt.file.read(indexFile);
     }
 
     // modify the sourcefile css according to the settings
-    var css = settings.css.map(function (file) {
-      return '<link rel="stylesheet" type="text/css" href="' + file + '"/>';
+    var css = settings.css.map(function (file) {   
+      if (settings.snapshot && file.search('http://') !== -1) {
+        return '<link rel="stylesheet" type="text/css" href="' + path.basename(file) + '"/>';
+      } else {
+        return '<link rel="stylesheet" type="text/css" href="' + file + '"/>';
+      }
     });
     sourceFile = sourceFile.replace('{{css}}', css.join(''));
 
@@ -143,8 +150,8 @@ module.exports = function(grunt) {
       wwwroot: data.wwwroot || options.wwwroot || 'public',
       src: data.src || options.src || 'public/patterns',
       dest: data.dest || options.dest || 'docs',
-      snapshot: data.snapshot || options.snapshot || false,
-      index: data.frame || options.frame || null,
+      snapshot: (data.snapshot !== undefined ? data.snapshot : (options.snapshot !== undefined ? options.snapshot : false)),
+      index: data.index || options.index || null,
       css: data.css || options.css || ['global.css']
     };
 
@@ -200,16 +207,38 @@ module.exports = function(grunt) {
     // writes the task output to a file 
     var writeSnapshot = function () {
       primer(function (content) {
+        var promises = [];
         // write the index file
         grunt.file.write('./' + settings.dest + '/index.html', content);
         // copy css files
         settings.css.forEach(function (file) {
-          grunt.file.copy('./' + settings.wwwroot + '/' + file, './' + settings.dest + '/' + file);
+          var deferred = Q.defer();
+          promises.push(deferred.promise);
+          if (file.search('http://') !== -1) {
+
+            var data = '';
+            http.get(file, function (res) {
+              res.on('data', function(chunk) {
+                data += chunk;
+              });
+              res.on('end', function () {
+                grunt.file.write('./' + settings.dest + '/style.css', data);
+                deferred.resolve();
+              });
+            })
+            .on('err', deferred.reject);
+          } else {
+            grunt.file.copy('./' + settings.wwwroot + '/' + file, './' + settings.dest + '/' + file);
+          }
         });
 
         grunt.log.ok('Stand-alone output can now be found in "' + settings.dest + '/"');
         grunt.event.emit('patternprimer:snapshot:written');
-        done();
+        if (promises.length === 0) {
+          done();
+        } else {
+          Q.allSettled(promises).then(done);
+        }
       });
     };
 

@@ -1,7 +1,7 @@
 {
   "name": "grunt-patternprimer",
   "description": "Jeremy Keiths pattern primer on steroids",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/asciidisco/grunt-patternprimer",
   "author": {
     "name": "Sebastian Golasch",
@@ -28,7 +28,8 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "connect": "~2.7.11"
+    "connect": "~2.7.11",
+    "q": "~1.0.0"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.6.4",
