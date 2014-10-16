@@ -76,6 +76,8 @@ module.exports = function(grunt) {
   // generates the html output for the patterns
   var outputPatterns = function (patterns, cb) {
     getSourceFile(function generatePatterns(content) {
+      var scripts = content.match(/<script[\s\S]*?>[\s\S]*?<\/script>/g);
+      content = content.replace(/<script[\s\S]*?>[\s\S]*?<\/script>/g, "");
       patterns.forEach(function (file) {
         content += '<hr/>';
         content += '<div class="pattern"><div class="display">';
@@ -85,6 +87,7 @@ module.exports = function(grunt) {
         content += '</textarea>';
         content += '</div></div>';
       });
+      content += scripts;
       content += '</body></html>';
       cb(content);
     });
