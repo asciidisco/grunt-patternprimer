@@ -229,6 +229,7 @@ module.exports = function(grunt) {
             .on('err', deferred.reject);
           } else {
             grunt.file.copy('./' + settings.wwwroot + '/' + file, './' + settings.dest + '/' + file);
+            deferred.resolve();
           }
         });
 
