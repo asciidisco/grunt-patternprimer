@@ -83,7 +83,7 @@ module.exports = function(grunt) {
         content += '</div><div class="source"><textarea rows="6" cols="30">';
         content += simpleEscaper(file.content);
         content += '</textarea>';
-        content += '<p><a href="/'+ patternFolder + '/' + file.filename +'">' + file.filename + '</a></p>'
+        content += '<p><a href="/'+ patternFolder + '/' + file.filename +'">' + file.filename + '</a></p>';
         content += '</div></div>';
       });
       content += '</body></html>';
