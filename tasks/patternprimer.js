@@ -129,7 +129,6 @@ module.exports = function(grunt) {
           files.push(content);
         }
       });
-
       // handle all the found pattern files
       handleFiles(patternFolder, files, cb);
     });
@@ -150,19 +149,35 @@ module.exports = function(grunt) {
       snapshot_port: Array.isArray(data.ports) && data.ports[1] ? data.ports[1] : Array.isArray(options.ports) && options.ports[1] ? options.ports[1] : 7040,
       wwwroot: data.wwwroot || options.wwwroot || 'public',
       src: data.src || options.src || 'public/patterns',
+      files: data.files || options.files || [],
       dest: data.dest || options.dest || 'docs',
       snapshot: (data.snapshot !== undefined ? data.snapshot : (options.snapshot !== undefined ? options.snapshot : false)),
       index: data.index || options.index || null,
       css: data.css || options.css || ['global.css']
     };
 
-    // local pattern folder (there are the html snapshots)
-    var patternFolder = './' + settings.src;
+    var primer;
 
-    // our main function that starts the process
-    var primer = function (cb) {
-      readPatterns(patternFolder, cb);
-    };
+    // local pattern folder (there are the html snapshots)
+    if (settings.files.length > 0) {
+      var patterns = settings.files;
+      var patternsFolder = settings.src;
+
+      // our main function that starts the process
+      primer = function (cb) {
+        handleFiles(patternsFolder, patterns, cb);
+      };
+
+    } else {
+     var patternFolder = './' + settings.src;
+
+      // our main function that starts the process
+      primer = function (cb) {
+        readPatterns(patternFolder, cb);
+      };
+    }
+
+   
 
     // middleware to spit out 404 (in case a non existing ressource is request)
     // or to process the `non static` requests
