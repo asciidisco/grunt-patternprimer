@@ -153,5 +153,10 @@ Including Sass into my config enabled me to start creating a master library of c
 > Sass included version [stevebritton](https://github.com/stevebritton) [Pattern-Primer](https://github.com/stevebritton/grunt-patternprimer)
 
 ## Release History
+ * 2014-12-03   v0.1.2 
+  - Script tags added to index template don't get moved to the bottom anymore (https://github.com/asciidisco/grunt-patternprimer/commit/b933db8114a034dc1f49629d9f899f11b9dd6ecb)
+  - Choose the order patterns are added using the settings option (https://github.com/asciidisco/grunt-patternprimer/commit/c8618225a5e6750586193043340bb4d84c00ad9f)
+  - Resolve file copy process (https://github.com/asciidisco/grunt-patternprimer/commit/3efcf33084679a4111e049a1b691f593afff88e5)
+
  * 2014-03-04   v0.1.1   Added remote css & fixed [#3](https://github.com/asciidisco/grunt-patternprimer/issues/3)
  * 2013-11-25   v0.1.0   Initial release.
