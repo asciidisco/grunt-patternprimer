@@ -74,7 +74,7 @@ module.exports = function(grunt) {
   };
 
   // generates the html output for the patterns
-  var outputPatterns = function (patterns, cb) {
+  var outputPatterns = function (patternFolder, patterns, cb) {
     getSourceFile(function generatePatterns(content) {
       patterns.forEach(function (file) {
         content += '<hr/>';
@@ -83,6 +83,7 @@ module.exports = function(grunt) {
         content += '</div><div class="source"><textarea rows="6" cols="30">';
         content += simpleEscaper(file.content);
         content += '</textarea>';
+        content += '<p><a href="/'+ patternFolder + '/' + file.filename +'">' + file.filename + '</a></p>'
         content += '</div></div>';
       });
       content += '</body></html>';
@@ -102,7 +103,7 @@ module.exports = function(grunt) {
 
     // call the outputPatterns function that generates
     // the html for every pattern
-    outputPatterns(patterns, cb);
+    outputPatterns(patternFolder, patterns, cb);
   };
 
   // simple html escape helper
@@ -229,6 +230,7 @@ module.exports = function(grunt) {
             .on('err', deferred.reject);
           } else {
             grunt.file.copy('./' + settings.wwwroot + '/' + file, './' + settings.dest + '/' + file);
+            deferred.resolve();
           }
         });
 
